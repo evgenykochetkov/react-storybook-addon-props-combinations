@@ -9,18 +9,11 @@ const propsCombinations = combinations({
   children: ['', 'hello world', 'some moderately long text', <b>some other elements</b>]
 })
 
-const replacer = (key, value) => {
-  if (React.isValidElement(value)) {
-    return reactElementToJSXString(value)
-  }
-  return value;
-}
-
-const Decorator = ({children, passedProps}) => (
+const Decorator = ({children}) => (
   <div>
     {children}
     <pre>
-      {JSON.stringify(passedProps, replacer, 2)}
+      {reactElementToJSXString(children)}
     </pre>
   </div>
 )
@@ -30,7 +23,7 @@ storiesOf('Button', module)
     <div>
       {
         propsCombinations.map((props) => (
-          <Decorator passedProps={props}>
+          <Decorator>
             {React.createElement('button', props)}
           </Decorator>
         ))
