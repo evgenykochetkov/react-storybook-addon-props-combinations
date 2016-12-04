@@ -3,13 +3,15 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "keywords": [],
   "author": "Evgeny Kochetkov",
   "license": "ISC",
   "devDependencies": {
-    "@kadira/storybook": "^2.33.1"
+    "@kadira/storybook": "^2.33.1",
+    "@kadira/storybook-deployer": "^1.2.0"
   },
   "dependencies": {
     "react": "^15.4.1",
