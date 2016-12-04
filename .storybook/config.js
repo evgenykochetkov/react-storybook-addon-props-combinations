@@ -5,5 +5,5 @@ import WithPropsCombinationsAddon from '../src/'
 setAddon(WithPropsCombinationsAddon)
 
 configure(() => {
-  require('../stories/index.js');
+  require('../example/index.js');
 }, module);

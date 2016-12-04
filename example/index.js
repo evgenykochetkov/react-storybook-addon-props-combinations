@@ -7,6 +7,7 @@ storiesOf('Button', module)
     'button',
     {
       disabled: [false, true],
+      onClick: [action('clicked')],
       children: ['hello world', <b>some other elements</b>]
     }
   )
