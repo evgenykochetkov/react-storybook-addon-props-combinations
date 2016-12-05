@@ -1,9 +1,8 @@
 import React from 'react';
-import reactElementToJSXString from 'react-element-to-jsx-string';
-
-import ErrorDisplay from './ErrorDisplay'
 
 import { combinations } from './utils'
+import defaultRender from './defaultRender'
+import ErrorDisplay from './ErrorDisplay'
 
 const checkMissingProps = (component, possiblePropsByName) => {
   if (typeof component === 'string') {
@@ -19,26 +18,6 @@ const checkMissingProps = (component, possiblePropsByName) => {
   }
 
   return null
-}
-
-const defaultRender = (component, props, options) => {
-  const el = React.createElement(component, props)
-
-  const {
-    showSource
-  } = options
-
-  return (
-    <div>
-      {el}
-      {showSource && (
-        <pre>
-          {reactElementToJSXString(el)}
-        </pre>
-      )}
-
-    </div>
-  )
 }
 
 const defaultOptions = {
@@ -80,5 +59,5 @@ export default {
 }
 
 export function setDefaults(newDefaults) {
-    return Object.assign(defaultOptions, newDefaults)
+  return Object.assign(defaultOptions, newDefaults)
 }
