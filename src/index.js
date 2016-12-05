@@ -3,7 +3,7 @@ import reactElementToJSXString from 'react-element-to-jsx-string';
 
 import { combinations } from './utils'
 
-const Decorator = ({children}) => (
+const DefaultDecorator = ({children}) => (
   <div>
     {children}
     <pre>
@@ -12,8 +12,21 @@ const Decorator = ({children}) => (
   </div>
 )
 
+const defaultOptions = {
+    Decorator: DefaultDecorator
+}
+
 export default {
-  addWithPropsCombinations (storyName, component, possiblePropsByName, options = {}) {
+  addWithPropsCombinations (storyName, component, possiblePropsByName, userOptions) {
+
+    const options = {
+        ...defaultOptions,
+        ...userOptions
+    }
+
+    const {
+        Decorator
+    } = options
 
     const propsCombinations = combinations(possiblePropsByName)
 
@@ -31,4 +44,8 @@ export default {
     ))
 
   }
+}
+
+export function setDefaults(newDefaults) {
+    return Object.assign(defaultOptions, newDefaults)
 }
