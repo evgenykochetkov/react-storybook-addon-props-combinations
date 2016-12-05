@@ -1,5 +1,5 @@
 {
-  "name": "storybook-props-combinations",
+  "name": "react-storybook-addon-props-combinations",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -8,7 +8,7 @@
     "deploy-storybook": "storybook-to-ghpages",
     "transpile": "babel --plugins \"transform-runtime\" ./src --out-dir ./dist"
   },
-  "keywords": [],
+  "keywords": ["storybook", "react-storybook", "addon"],
   "author": "Evgeny Kochetkov",
   "license": "ISC",
   "devDependencies": {
