@@ -9,5 +9,8 @@ storiesOf('Button', module)
       disabled: [false, true],
       onClick: [action('clicked')],
       children: ['hello world', <b>some other elements</b>]
+    },
+    {
+      showSource: false
     }
   )

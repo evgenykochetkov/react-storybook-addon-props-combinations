@@ -6,18 +6,26 @@ import { combinations } from './utils'
 const defaultRender = (component, props, options) => {
   const el = React.createElement(component, props)
 
+  const {
+    showSource
+  } = options
+
   return (
     <div>
       {el}
-      <pre>
-        {reactElementToJSXString(el)}
-      </pre>
+      {showSource && (
+        <pre>
+          {reactElementToJSXString(el)}
+        </pre>
+      )}
+
     </div>
   )
 }
 
 const defaultOptions = {
-  render: defaultRender
+  render: defaultRender,
+  showSource: true
 }
 
 export default {

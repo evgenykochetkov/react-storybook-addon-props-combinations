@@ -5,6 +5,7 @@ import WithPropsCombinationsAddon, { setDefaults as setWithPropsCombinationsAddo
 setAddon(WithPropsCombinationsAddon)
 setWithPropsCombinationsAddonDefaults({
   // overwrite global defaults here
+  // showSource: true,
 })
 
 configure(() => {
