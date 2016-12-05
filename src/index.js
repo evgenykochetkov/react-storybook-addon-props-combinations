@@ -3,43 +3,40 @@ import reactElementToJSXString from 'react-element-to-jsx-string';
 
 import { combinations } from './utils'
 
-const DefaultDecorator = ({children}) => (
-  <div>
-    {children}
-    <pre>
-      {reactElementToJSXString(children)}
-    </pre>
-  </div>
-)
+const defaultRender = (component, props, options) => {
+  const el = React.createElement(component, props)
+
+  return (
+    <div>
+      {el}
+      <pre>
+        {reactElementToJSXString(el)}
+      </pre>
+    </div>
+  )
+}
 
 const defaultOptions = {
-    Decorator: DefaultDecorator
+  render: defaultRender
 }
 
 export default {
   addWithPropsCombinations (storyName, component, possiblePropsByName, userOptions) {
 
     const options = {
-        ...defaultOptions,
-        ...userOptions
+      ...defaultOptions,
+      ...userOptions
     }
 
     const {
-        Decorator
+      render
     } = options
 
     const propsCombinations = combinations(possiblePropsByName)
 
-    const componentWithAllPropsCombinations =
-      propsCombinations.map((props) => (
-        <Decorator>
-          {React.createElement(component, props)}
-        </Decorator>
-      ))
-
     this.add(storyName, () => (
       <div>
-        {componentWithAllPropsCombinations}
+        {propsCombinations.map((props) => render(component, props, options))}
       </div>
     ))
 
