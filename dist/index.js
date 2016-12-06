@@ -24,9 +24,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _utils = require('./utils');
 
-var _defaultRender = require('./defaultRender');
+var _renderCombination = require('./renderCombination');
 
-var _defaultRender2 = _interopRequireDefault(_defaultRender);
+var _renderCombination2 = _interopRequireDefault(_renderCombination);
 
 var _ErrorDisplay = require('./ErrorDisplay');
 
@@ -34,46 +34,46 @@ var _ErrorDisplay2 = _interopRequireDefault(_ErrorDisplay);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var checkMissingProps = function checkMissingProps(component, possiblePropsByName) {
+var checkForMissingProps = function checkForMissingProps(component, possibleValuesByPropName) {
   if (typeof component === 'string') {
-    return 'mustProvideAllProps option is not supported for built-in components';
+    return new Error('mustProvideAllProps option is not supported for built-in components');
   }
 
-  var componentPropNames = (0, _keys2.default)(component.propTypes);
-  var propNamesWithProvidedValues = (0, _keys2.default)(possiblePropsByName);
-  var missingProps = componentPropNames.filter(function (pn) {
-    return propNamesWithProvidedValues.indexOf(pn) < 0;
+  var componentProps = (0, _keys2.default)(component.propTypes);
+  var propsWithProvidedValues = (0, _keys2.default)(possibleValuesByPropName);
+  var missingProps = componentProps.filter(function (pn) {
+    return propsWithProvidedValues.indexOf(pn) < 0;
   });
 
   if (missingProps.length) {
-    return 'Missing possible values for props: ' + missingProps.join(', ');
+    return new Error('Missing possible values for props: ' + missingProps.join(', '));
   }
 
   return null;
 };
 
 var defaultOptions = {
-  render: _defaultRender2.default,
+  renderCombination: _renderCombination2.default,
   showSource: true,
   mustProvideAllProps: false
 };
 
 exports.default = {
-  addWithPropsCombinations: function addWithPropsCombinations(storyName, component, possiblePropsByName, userOptions) {
+  addWithPropsCombinations: function addWithPropsCombinations(storyName, component, possibleValuesByPropName, userOptions) {
     var options = (0, _extends3.default)({}, defaultOptions, userOptions);
 
-    var render = options.render,
+    var renderCombination = options.renderCombination,
         mustProvideAllProps = options.mustProvideAllProps;
 
 
-    var propsCombinations = (0, _utils.combinations)(possiblePropsByName);
+    var propsCombinations = (0, _utils.combinations)(possibleValuesByPropName);
 
     this.add(storyName, function () {
       if (mustProvideAllProps) {
-        var errorMsg = checkMissingProps(component, possiblePropsByName);
+        var err = checkForMissingProps(component, possibleValuesByPropName);
 
-        if (errorMsg) {
-          return _react2.default.createElement(_ErrorDisplay2.default, { message: errorMsg });
+        if (err) {
+          return _react2.default.createElement(_ErrorDisplay2.default, { message: err.message });
         }
       }
 
@@ -81,7 +81,7 @@ exports.default = {
         'div',
         null,
         propsCombinations.map(function (props) {
-          return render(component, props, options);
+          return renderCombination(component, props, options);
         })
       );
     });
