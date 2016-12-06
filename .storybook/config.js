@@ -1,13 +1,14 @@
 import { configure, setAddon } from '@kadira/storybook'
 
-import WithPropsCombinationsAddon, { setDefaults as setWithPropsCombinationsAddonDefaults } from '../src/'
+import WithPropsCombinationsAddon, { setDefaults } from '../src/'
 
 setAddon(WithPropsCombinationsAddon)
-setWithPropsCombinationsAddonDefaults({
+setDefaults({
   // overwrite global defaults here
-  // showSource: true,
 })
 
+const req = require.context('../example', true, /.story.js$/)
+
 configure(() => {
-  require('../example/index.js');
-}, module);
+  req.keys().forEach((filename) => req(filename))
+}, module)
