@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 import { combinations } from './utils'
-import defaultRender from './defaultRender'
+import defaultRenderCombination from './renderCombination'
 import ErrorDisplay from './ErrorDisplay'
 
 const checkForMissingProps = (component, possibleValuesByPropName) => {
@@ -11,7 +11,7 @@ const checkForMissingProps = (component, possibleValuesByPropName) => {
 
   const componentProps = Object.keys(component.propTypes)
   const propsWithProvidedValues = Object.keys(possibleValuesByPropName)
-  const missingProps = componentProps.filter((pn) => propsWithProvidedValues.indexOf(pn) < 0);
+  const missingProps = componentProps.filter((pn) => propsWithProvidedValues.indexOf(pn) < 0)
 
   if (missingProps.length) {
     return new Error('Missing possible values for props: ' + missingProps.join(', '))
@@ -21,7 +21,7 @@ const checkForMissingProps = (component, possibleValuesByPropName) => {
 }
 
 const defaultOptions = {
-  render: defaultRender,
+  renderCombination: defaultRenderCombination,
   showSource: true,
   mustProvideAllProps: false,
 }
@@ -34,7 +34,7 @@ export default {
     }
 
     const {
-      render,
+      renderCombination,
       mustProvideAllProps,
     } = options
 
@@ -51,7 +51,7 @@ export default {
 
       return (
         <div>
-          {propsCombinations.map((props) => render(component, props, options))}
+          {propsCombinations.map((props) => renderCombination(component, props, options))}
         </div>
       )
     })
