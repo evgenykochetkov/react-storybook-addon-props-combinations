@@ -4,17 +4,17 @@ import { combinations } from './utils'
 import defaultRender from './defaultRender'
 import ErrorDisplay from './ErrorDisplay'
 
-const checkMissingProps = (component, possiblePropsByName) => {
+const checkForMissingProps = (component, possibleValuesByPropName) => {
   if (typeof component === 'string') {
-    return 'mustProvideAllProps option is not supported for built-in components'
+    return new Error('mustProvideAllProps option is not supported for built-in components')
   }
 
-  const componentPropNames = Object.keys(component.propTypes)
-  const propNamesWithProvidedValues = Object.keys(possiblePropsByName)
-  const missingProps = componentPropNames.filter((pn) => propNamesWithProvidedValues.indexOf(pn) < 0);
+  const componentProps = Object.keys(component.propTypes)
+  const propsWithProvidedValues = Object.keys(possibleValuesByPropName)
+  const missingProps = componentProps.filter((pn) => propsWithProvidedValues.indexOf(pn) < 0);
 
   if (missingProps.length) {
-    return 'Missing possible values for props: ' + missingProps.join(', ')
+    return new Error('Missing possible values for props: ' + missingProps.join(', '))
   }
 
   return null
@@ -27,7 +27,7 @@ const defaultOptions = {
 }
 
 export default {
-  addWithPropsCombinations (storyName, component, possiblePropsByName, userOptions) {
+  addWithPropsCombinations (storyName, component, possibleValuesByPropName, userOptions) {
     const options = {
       ...defaultOptions,
       ...userOptions
@@ -38,14 +38,14 @@ export default {
       mustProvideAllProps,
     } = options
 
-    const propsCombinations = combinations(possiblePropsByName)
+    const propsCombinations = combinations(possibleValuesByPropName)
 
     this.add(storyName, () => {
       if (mustProvideAllProps) {
-        const errorMsg = checkMissingProps(component, possiblePropsByName)
+        const err = checkForMissingProps(component, possibleValuesByPropName)
 
-        if (errorMsg) {
-          return <ErrorDisplay message={errorMsg} />
+        if (err) {
+          return <ErrorDisplay message={err.message} />
         }
       }
 
