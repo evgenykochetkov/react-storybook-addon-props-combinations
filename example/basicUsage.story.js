@@ -8,7 +8,7 @@ storiesOf('Basics', module)
     {
       disabled: [false, true],
       onClick: [action('clicked')],
-      children: ['hello world', <b>some other elements</b>]
+      children: ['hello world', <b>some elements</b>]
     }
   )
   .addWithPropsCombinations(
@@ -17,7 +17,7 @@ storiesOf('Basics', module)
     {
       disabled: [false, true],
       onClick: [action('clicked')],
-      children: ['hello world', <b>some other elements</b>]
+      children: ['hello world', <b>some elements</b>]
     },
     {
       showSource: false,

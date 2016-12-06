@@ -1,8 +1,8 @@
 import { configure, setAddon } from '@kadira/storybook'
 
-import WithPropsCombinationsAddon, { setDefaults } from '../src/'
+import withPropsCombinations, { setDefaults } from '../src/'
 
-setAddon(WithPropsCombinationsAddon)
+setAddon(withPropsCombinations)
 setDefaults({
   // overwrite global defaults here
 })
