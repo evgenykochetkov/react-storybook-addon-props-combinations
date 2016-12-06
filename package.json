@@ -1,12 +1,14 @@
 {
   "name": "react-storybook-addon-props-combinations",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Props Combinations addon for React Storybook",
   "main": "dist/index.js",
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
     "deploy-storybook": "storybook-to-ghpages",
-    "transpile": "babel --plugins \"transform-runtime\" ./src --out-dir ./dist"
+    "transpile": "babel --plugins \"transform-runtime\" ./src --out-dir ./dist",
+    "prepublish": "rm -rf ./dist && npm run transpile",
+    "postpublish": "npm run deploy-storybook"
   },
   "keywords": ["storybook", "react-storybook", "addon"],
   "author": "Evgeny Kochetkov",
