@@ -1,7 +1,9 @@
 import React from 'react'
 
+import objectHash from 'object-hash'
+
 import { combinations } from './utils'
-import defaultRenderCombination from './renderCombination'
+import DefaultCombinationRenderer from './CombinationRenderer'
 import ErrorDisplay from './ErrorDisplay'
 
 const checkForMissingProps = (component, possibleValuesByPropName) => {
@@ -21,7 +23,7 @@ const checkForMissingProps = (component, possibleValuesByPropName) => {
 }
 
 const defaultOptions = {
-  renderCombination: defaultRenderCombination,
+  CombinationRenderer: DefaultCombinationRenderer,
   showSource: true,
   mustProvideAllProps: false,
 }
@@ -34,7 +36,7 @@ export default {
     }
 
     const {
-      renderCombination,
+      CombinationRenderer,
       mustProvideAllProps,
     } = options
 
@@ -51,7 +53,14 @@ export default {
 
       return (
         <div>
-          {propsCombinations.map((props) => renderCombination(component, props, options))}
+          {propsCombinations.map((props) =>
+            <CombinationRenderer
+              Component={component}
+              props={props}
+              options={options} 
+              key={objectHash(props)}
+            />
+          )}
         </div>
       )
     })

@@ -3,7 +3,7 @@ import { storiesOf } from '@kadira/storybook';
 
 class SomeComponent extends React.Component {
   static propTypes = {
-    foo: pt.string.isRequired,
+    foo: pt.number.isRequired,
     bar: pt.string.isRequired,
     baz: pt.bool.isRequired,
   }

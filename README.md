@@ -70,9 +70,9 @@ Ensures that possible values are provided for all props listed in propTypes.
 
 [Example source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/mustProvideAllProps.story.js) | [Result](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=mustProvideAllProps%20example&selectedStory=With%20all%20props%20provided&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
 
-### `renderCombination`
-[default implementation](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/src/renderCombination.js)
+### `CombinationRenderer`
+[default implementation](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/src/CombinationRenderer.js)
 
-A function that renders a single props combination for your component. Takes `Component`, `props` and `options` as arguments.
+A component that renders a single props combination for your component. Receives `Component`, `props` and `options` as props.
 
-[Example source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/customRenderCombination.story.js) | [Result](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=Custom%20renderCombination%20example&selectedStory=Rendering%20just%20a%20component%20without%20any%20wrappers&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
+[Example source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/customCombinationRenderer.story.js) | [Result](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=Custom%20CombinationRenderer%20example&selectedStory=Rendering%20just%20a%20component%20without%20any%20wrappers&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)

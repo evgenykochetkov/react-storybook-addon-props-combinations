@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 
-storiesOf('Custom renderCombination example', module)
+storiesOf('Custom CombinationRenderer example', module)
   .addWithPropsCombinations(
     'Rendering just a component without any wrappers',
     'button',
@@ -11,6 +11,8 @@ storiesOf('Custom renderCombination example', module)
       children: ['hello world', <b>some other elements</b>]
     },
     {
-      renderCombination: (Component, props, options) => <Component {...props} />
+      CombinationRenderer: ({Component, props, options}) => (
+        <Component {...props} />
+      )
     }
   )

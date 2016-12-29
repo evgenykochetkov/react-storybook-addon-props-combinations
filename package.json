@@ -10,7 +10,11 @@
     "prepublish": "rm -rf ./dist && npm run transpile",
     "postpublish": "npm run deploy-storybook"
   },
-  "keywords": ["storybook", "react-storybook", "addon"],
+  "keywords": [
+    "storybook",
+    "react-storybook",
+    "addon"
+  ],
   "author": "Evgeny Kochetkov",
   "license": "ISC",
   "devDependencies": {
@@ -27,6 +31,7 @@
     "react-dom": "^15.4.1"
   },
   "dependencies": {
+    "object-hash": "^1.1.5",
     "react-element-to-jsx-string": "^5.0.2"
   },
   "peerDependencies": {
