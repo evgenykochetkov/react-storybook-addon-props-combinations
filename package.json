@@ -1,6 +1,6 @@
 {
   "name": "react-storybook-addon-props-combinations",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Props Combinations addon for React Storybook",
   "main": "dist/index.js",
   "scripts": {
@@ -11,11 +11,17 @@
     "postpublish": "npm run deploy-storybook"
   },
   "keywords": [
+    "react",
     "storybook",
     "react-storybook",
-    "addon"
+    "addon",
+    "plugin"
   ],
   "author": "Evgeny Kochetkov",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evgenykochetkov/react-storybook-addon-props-combinations.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "@kadira/storybook": "^2.33.1",

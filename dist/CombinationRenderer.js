@@ -14,8 +14,12 @@ var _reactElementToJsxString2 = _interopRequireDefault(_reactElementToJsxString)
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (component, props, options) {
-  var el = _react2.default.createElement(component, props);
+exports.default = function (_ref) {
+  var Component = _ref.Component,
+      props = _ref.props,
+      options = _ref.options;
+
+  var el = _react2.default.createElement(Component, props);
 
   var showSource = options.showSource;
 

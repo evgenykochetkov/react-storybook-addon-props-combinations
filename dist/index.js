@@ -22,11 +22,15 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _objectHash = require('object-hash');
+
+var _objectHash2 = _interopRequireDefault(_objectHash);
+
 var _utils = require('./utils');
 
-var _renderCombination = require('./renderCombination');
+var _CombinationRenderer = require('./CombinationRenderer');
 
-var _renderCombination2 = _interopRequireDefault(_renderCombination);
+var _CombinationRenderer2 = _interopRequireDefault(_CombinationRenderer);
 
 var _ErrorDisplay = require('./ErrorDisplay');
 
@@ -53,7 +57,7 @@ var checkForMissingProps = function checkForMissingProps(component, possibleValu
 };
 
 var defaultOptions = {
-  renderCombination: _renderCombination2.default,
+  CombinationRenderer: _CombinationRenderer2.default,
   showSource: true,
   mustProvideAllProps: false
 };
@@ -62,7 +66,11 @@ exports.default = {
   addWithPropsCombinations: function addWithPropsCombinations(storyName, component, possibleValuesByPropName, userOptions) {
     var options = (0, _extends3.default)({}, defaultOptions, userOptions);
 
-    var renderCombination = options.renderCombination,
+    if (!!options.renderCombination) {
+      throw new Error("renderCombination option is deprecated. \nPlease use CombinationRenderer instead. \nSee https://github.com/evgenykochetkov/react-storybook-addon-props-combinations#combinationrenderer");
+    }
+
+    var CombinationRenderer = options.CombinationRenderer,
         mustProvideAllProps = options.mustProvideAllProps;
 
 
@@ -81,7 +89,12 @@ exports.default = {
         'div',
         null,
         propsCombinations.map(function (props) {
-          return renderCombination(component, props, options);
+          return _react2.default.createElement(CombinationRenderer, {
+            Component: component,
+            props: props,
+            options: options,
+            key: (0, _objectHash2.default)(props)
+          });
         })
       );
     });
