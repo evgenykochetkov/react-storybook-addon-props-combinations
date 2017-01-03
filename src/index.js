@@ -44,8 +44,6 @@ export default {
       mustProvideAllProps,
     } = options
 
-    const propsCombinations = combinations(possibleValuesByPropName)
-
     this.add(storyName, () => {
       if (mustProvideAllProps) {
         const err = checkForMissingProps(component, possibleValuesByPropName)
@@ -54,6 +52,8 @@ export default {
           return <ErrorDisplay message={err.message} />
         }
       }
+
+      const propsCombinations = combinations(possibleValuesByPropName)
 
       return (
         <div>
