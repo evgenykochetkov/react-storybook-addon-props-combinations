@@ -35,6 +35,10 @@ export default {
       ...userOptions
     }
 
+    if (!!options.renderCombination) {
+      throw new Error("renderCombination option is deprecated. \nPlease use CombinationRenderer instead. \nSee https://github.com/evgenykochetkov/react-storybook-addon-props-combinations#combinationrenderer")
+    }
+
     const {
       CombinationRenderer,
       mustProvideAllProps,
@@ -57,7 +61,7 @@ export default {
             <CombinationRenderer
               Component={component}
               props={props}
-              options={options} 
+              options={options}
               key={objectHash(props)}
             />
           )}
