@@ -1,8 +1,8 @@
 import React from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 
-export default (component, props, options) => {
-  const el = React.createElement(component, props)
+export default ({Component, props, options}) => {
+  const el = React.createElement(Component, props)
 
   const {
     showSource
