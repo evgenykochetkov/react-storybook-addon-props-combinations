@@ -4,15 +4,44 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _for = require('babel-runtime/core-js/symbol/for');
+
+var _for2 = _interopRequireDefault(_for);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactElementToJsxString = require('react-element-to-jsx-string');
+var _prettyFormat = require('pretty-format');
 
-var _reactElementToJsxString2 = _interopRequireDefault(_reactElementToJsxString);
+var _prettyFormat2 = _interopRequireDefault(_prettyFormat);
+
+var _ReactElement = require('pretty-format/build/plugins/ReactElement');
+
+var _ReactElement2 = _interopRequireDefault(_ReactElement);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var reactElement = (0, _for2.default)('react.element');
+
+var transformPreactElement = function transformPreactElement(el) {
+  if (!el.preactCompatUpgraded) {
+    return el;
+  }
+  el.props = (0, _extends3.default)({}, el.attributes, {
+    children: el.children.map(function (child) {
+      if (child.$$typeof === reactElement) {
+        return transformPreactElement(child);
+      }
+      return child;
+    })
+  });
+  return el;
+};
 
 exports.default = function (_ref) {
   var Component = _ref.Component,
@@ -31,7 +60,9 @@ exports.default = function (_ref) {
     showSource && _react2.default.createElement(
       'pre',
       null,
-      (0, _reactElementToJsxString2.default)(el)
+      (0, _prettyFormat2.default)(transformPreactElement(el), {
+        plugins: [_ReactElement2.default]
+      })
     )
   );
 };

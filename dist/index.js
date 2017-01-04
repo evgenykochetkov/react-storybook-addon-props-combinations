@@ -74,8 +74,6 @@ exports.default = {
         mustProvideAllProps = options.mustProvideAllProps;
 
 
-    var propsCombinations = (0, _utils.combinations)(possibleValuesByPropName);
-
     this.add(storyName, function () {
       if (mustProvideAllProps) {
         var err = checkForMissingProps(component, possibleValuesByPropName);
@@ -84,6 +82,8 @@ exports.default = {
           return _react2.default.createElement(_ErrorDisplay2.default, { message: err.message });
         }
       }
+
+      var propsCombinations = (0, _utils.combinations)(possibleValuesByPropName);
 
       return _react2.default.createElement(
         'div',
