@@ -1,5 +1,24 @@
 import React from 'react';
-import reactElementToJSXString from 'react-element-to-jsx-string';
+import prettyFormat from 'pretty-format';
+import reactElementPlugin from 'pretty-format/build/plugins/ReactElement';
+
+const reactElement = Symbol.for('react.element');
+
+const transformPreactElement = (el) => {
+  if (!el.preactCompatUpgraded) {
+    return el;
+  }
+  el.props = {
+    ...el.attributes,
+    children: el.children.map(child => {
+      if (child.$$typeof === reactElement) {
+        return transformPreactElement(child);
+      }
+      return child;
+    }),
+  };
+  return el;
+};
 
 export default ({Component, props, options}) => {
   const el = React.createElement(Component, props)
@@ -13,7 +32,9 @@ export default ({Component, props, options}) => {
       {el}
       {showSource && (
         <pre>
-          {reactElementToJSXString(el)}
+          {prettyFormat(transformPreactElement(el), {
+            plugins: [reactElementPlugin],
+          })}
         </pre>
       )}
     </div>
