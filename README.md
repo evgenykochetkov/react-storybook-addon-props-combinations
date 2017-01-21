@@ -1,4 +1,6 @@
-# Props Combinations addon for [React Storybook](https://github.com/storybooks/react-storybook)
+[![npm version](https://badge.fury.io/js/react-storybook-addon-props-combinations.svg)](https://www.npmjs.com/package/react-storybook-addon-props-combinations)
+
+# Props Combinations addon for [React Storybook](https://github.com/storybooks/react-storybook) 
 
 Given possible values for each prop, renders your component with all combinations of prop values. Useful for finding edge cases or just seeing all component states at once.
 
