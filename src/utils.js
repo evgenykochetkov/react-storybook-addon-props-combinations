@@ -13,11 +13,20 @@ const flatMap = (arr, fn) => arr.map(fn).reduce((a, b) => a.concat(b))
  *  {foo: 2, bar: "b"}
  * ]
  */
-export const combinations = (variationsByField) =>
-  (function _combinations ([fieldName, ...restFieldNames], acc) {
+export const combinations = (variationsByField) => {
+  const fieldNames = Object.keys(variationsByField);
+
+  if (!fieldNames.length) return [{}]
+
+  const _combinations = ([fieldName, ...restFieldNames], acc) => {
     const variationsForField = variationsByField[fieldName]
 
-    if (!variationsForField) return acc;
+    if (
+      !Array.isArray(variationsForField) ||
+      !variationsForField.length
+    ) {
+      throw new Error(`Please provide a non-empty array of possible values for prop ${fieldName}`);
+    }
 
     const vs = variationsForField.map((fieldValue) => ({...acc, [fieldName]: fieldValue}))
 
@@ -26,4 +35,7 @@ export const combinations = (variationsByField) =>
     } else {
       return flatMap(vs, (newAcc) => _combinations(restFieldNames, newAcc))
     }
-  })(Object.keys(variationsByField), {})
+  }
+
+  return _combinations(fieldNames, {})
+}

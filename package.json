@@ -8,7 +8,17 @@
     "deploy-storybook": "storybook-to-ghpages",
     "transpile": "babel --plugins \"transform-runtime\" ./src --out-dir ./dist",
     "prepublish": "rm -rf ./dist && npm run transpile",
-    "postpublish": "npm run deploy-storybook"
+    "postpublish": "npm run deploy-storybook",
+    "test": "ava"
+  },
+  "ava": {
+    "files": [
+      "./src/**/*.test.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
   },
   "keywords": [
     "react",
@@ -26,6 +36,7 @@
   "devDependencies": {
     "@kadira/storybook": "^2.33.1",
     "@kadira/storybook-deployer": "^1.2.0",
+    "ava": "^0.18.1",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "babel-plugin-transform-runtime": "^6.15.0",
