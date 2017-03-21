@@ -5,6 +5,7 @@ import { withOneOfBool } from './modifiers'
 test('withOneOfBool', (t) => {
   t.deepEqual(
     [
+      {},
       { foo: true },
       { bar: true },
     ],
@@ -13,6 +14,7 @@ test('withOneOfBool', (t) => {
 
   t.deepEqual(
     [
+      { existingProp: 'must remain' },
       { foo: true, existingProp: 'must remain' },
       { bar: true, existingProp: 'must remain' },
     ],
@@ -21,6 +23,8 @@ test('withOneOfBool', (t) => {
 
   t.deepEqual(
     [
+      { comboA: 'A' },
+      { comboB: 'B' },
       { foo: true, comboA: 'A' },
       { bar: true, comboA: 'A' },
       { foo: true, comboB: 'B' },
