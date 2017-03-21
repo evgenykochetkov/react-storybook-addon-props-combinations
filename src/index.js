@@ -6,6 +6,8 @@ import { combinations } from './utils'
 import DefaultCombinationRenderer from './CombinationRenderer'
 import ErrorDisplay from './ErrorDisplay'
 
+export * from './modifiers'
+
 const checkForMissingProps = (component, possibleValuesByPropName) => {
   if (typeof component === 'string') {
     return new Error('mustProvideAllProps option is not supported for built-in components')
@@ -26,6 +28,7 @@ const defaultOptions = {
   CombinationRenderer: DefaultCombinationRenderer,
   showSource: true,
   mustProvideAllProps: false,
+  combinationsModifier: x => x,
 }
 
 export default {
@@ -41,6 +44,7 @@ export default {
 
     const {
       CombinationRenderer,
+      combinationsModifier,
       mustProvideAllProps,
     } = options
 
@@ -53,7 +57,7 @@ export default {
         }
       }
 
-      const propsCombinations = combinations(possibleValuesByPropName)
+      const propsCombinations = combinationsModifier(combinations(possibleValuesByPropName))
 
       return (
         <div>

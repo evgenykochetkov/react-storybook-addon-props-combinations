@@ -1,4 +1,4 @@
-const flatMap = (arr, fn) => arr.map(fn).reduce((a, b) => a.concat(b))
+export const flatMap = (arr, fn) => arr.map(fn).reduce((a, b) => a.concat(b))
 
 /**
  * Takes an object with a shape of {fieldName: arrayOfPossibleValues}
