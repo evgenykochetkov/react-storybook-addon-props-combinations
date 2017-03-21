@@ -26,6 +26,7 @@ const defaultOptions = {
   CombinationRenderer: DefaultCombinationRenderer,
   showSource: true,
   mustProvideAllProps: false,
+  combinationsModifier: x => x,
 }
 
 export default {
@@ -41,6 +42,7 @@ export default {
 
     const {
       CombinationRenderer,
+      combinationsModifier,
       mustProvideAllProps,
     } = options
 
@@ -53,7 +55,7 @@ export default {
         }
       }
 
-      const propsCombinations = combinations(possibleValuesByPropName)
+      const propsCombinations = combinationsModifier(combinations(possibleValuesByPropName))
 
       return (
         <div>
