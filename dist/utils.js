@@ -3,11 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.combinations = undefined;
-
-var _keys = require("babel-runtime/core-js/object/keys");
-
-var _keys2 = _interopRequireDefault(_keys);
+exports.combinations = exports.flatMap = undefined;
 
 var _defineProperty2 = require("babel-runtime/helpers/defineProperty");
 
@@ -21,9 +17,13 @@ var _toArray2 = require("babel-runtime/helpers/toArray");
 
 var _toArray3 = _interopRequireDefault(_toArray2);
 
+var _keys = require("babel-runtime/core-js/object/keys");
+
+var _keys2 = _interopRequireDefault(_keys);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var flatMap = function flatMap(arr, fn) {
+var flatMap = exports.flatMap = function flatMap(arr, fn) {
   return arr.map(fn).reduce(function (a, b) {
     return a.concat(b);
   });
@@ -43,14 +43,20 @@ var flatMap = function flatMap(arr, fn) {
  * ]
  */
 var combinations = exports.combinations = function combinations(variationsByField) {
-  return function _combinations(_ref, acc) {
+  var fieldNames = (0, _keys2.default)(variationsByField);
+
+  if (!fieldNames.length) return [{}];
+
+  var _combinations = function _combinations(_ref, acc) {
     var _ref2 = (0, _toArray3.default)(_ref),
         fieldName = _ref2[0],
         restFieldNames = _ref2.slice(1);
 
     var variationsForField = variationsByField[fieldName];
 
-    if (!variationsForField) return acc;
+    if (!Array.isArray(variationsForField) || !variationsForField.length) {
+      throw new Error("Please provide a non-empty array of possible values for prop " + fieldName);
+    }
 
     var vs = variationsForField.map(function (fieldValue) {
       return (0, _extends4.default)({}, acc, (0, _defineProperty3.default)({}, fieldName, fieldValue));
@@ -63,5 +69,7 @@ var combinations = exports.combinations = function combinations(variationsByFiel
         return _combinations(restFieldNames, newAcc);
       });
     }
-  }((0, _keys2.default)(variationsByField), {});
+  };
+
+  return _combinations(fieldNames, {});
 };

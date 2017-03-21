@@ -1,5 +1,6 @@
 'use strict';
 
+import _Object$defineProperty from 'babel-runtime/core-js/object/define-property';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -15,6 +16,19 @@ var _extends3 = _interopRequireDefault(_extends2);
 var _keys = require('babel-runtime/core-js/object/keys');
 
 var _keys2 = _interopRequireDefault(_keys);
+
+var _modifiers = require('./modifiers');
+
+_Object$keys(_modifiers).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+
+  _Object$defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _modifiers[key];
+    }
+  });
+});
 
 exports.setDefaults = setDefaults;
 
@@ -59,7 +73,10 @@ var checkForMissingProps = function checkForMissingProps(component, possibleValu
 var defaultOptions = {
   CombinationRenderer: _CombinationRenderer2.default,
   showSource: true,
-  mustProvideAllProps: false
+  mustProvideAllProps: false,
+  combinationsModifier: function combinationsModifier(x) {
+    return x;
+  }
 };
 
 exports.default = {
@@ -71,6 +88,7 @@ exports.default = {
     }
 
     var CombinationRenderer = options.CombinationRenderer,
+        combinationsModifier = options.combinationsModifier,
         mustProvideAllProps = options.mustProvideAllProps;
 
 
@@ -83,7 +101,7 @@ exports.default = {
         }
       }
 
-      var propsCombinations = (0, _utils.combinations)(possibleValuesByPropName);
+      var propsCombinations = combinationsModifier((0, _utils.combinations)(possibleValuesByPropName));
 
       return _react2.default.createElement(
         'div',
