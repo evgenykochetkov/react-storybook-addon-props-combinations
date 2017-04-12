@@ -6,7 +6,7 @@
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
     "deploy-storybook": "storybook-to-ghpages",
-    "transpile": "babel --plugins \"transform-runtime\" ./src --out-dir ./dist",
+    "transpile": "babel --plugins \"transform-runtime\" ./src --out-dir ./dist --ignore test.js",
     "prepublish": "rm -rf ./dist && npm run transpile",
     "postpublish": "npm run deploy-storybook",
     "test": "ava"
