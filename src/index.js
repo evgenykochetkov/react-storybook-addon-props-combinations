@@ -6,7 +6,7 @@ import { combinations } from './utils'
 import DefaultCombinationRenderer from './CombinationRenderer'
 import ErrorDisplay from './ErrorDisplay'
 
-export * from './modifiers'
+export { withOneOfBool } from './modifiers'
 
 const checkForMissingProps = (component, possibleValuesByPropName) => {
   if (typeof component === 'string') {

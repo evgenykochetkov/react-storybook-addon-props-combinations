@@ -1,9 +1,9 @@
 'use strict';
 
-import _Object$defineProperty from 'babel-runtime/core-js/object/define-property';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.withOneOfBool = undefined;
 
 var _assign = require('babel-runtime/core-js/object/assign');
 
@@ -19,17 +19,12 @@ var _keys2 = _interopRequireDefault(_keys);
 
 var _modifiers = require('./modifiers');
 
-_Object$keys(_modifiers).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-
-  _Object$defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _modifiers[key];
-    }
-  });
+Object.defineProperty(exports, 'withOneOfBool', {
+  enumerable: true,
+  get: function get() {
+    return _modifiers.withOneOfBool;
+  }
 });
-
 exports.setDefaults = setDefaults;
 
 var _react = require('react');
