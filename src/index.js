@@ -31,49 +31,48 @@ const defaultOptions = {
   combinationsModifier: x => x,
 }
 
-export default {
-  addWithPropsCombinations (storyName, component, possibleValuesByPropName, userOptions) {
-    const options = {
-      ...defaultOptions,
-      ...userOptions
-    }
+export default function withPropsCombinations (component, possibleValuesByPropName, userOptions) {
+  const options = {
+    ...defaultOptions,
+    ...userOptions
+  }
 
-    if (!!options.renderCombination) {
-      throw new Error("renderCombination option is deprecated. \nPlease use CombinationRenderer instead. \nSee https://github.com/evgenykochetkov/react-storybook-addon-props-combinations#combinationrenderer")
-    }
+  if (!!options.renderCombination) {
+    throw new Error("renderCombination option is deprecated. \nPlease use CombinationRenderer instead. \nSee https://github.com/evgenykochetkov/react-storybook-addon-props-combinations#combinationrenderer")
+  }
 
-    const {
-      CombinationRenderer,
-      combinationsModifier,
-      mustProvideAllProps,
-    } = options
+  const {
+    CombinationRenderer,
+    combinationsModifier,
+    mustProvideAllProps,
+  } = options
 
-    this.add(storyName, () => {
-      if (mustProvideAllProps) {
-        const err = checkForMissingProps(component, possibleValuesByPropName)
+  return () => {
+    if (mustProvideAllProps) {
+      const err = checkForMissingProps(component, possibleValuesByPropName)
 
-        if (err) {
-          return <ErrorDisplay message={err.message} />
-        }
+      if (err) {
+        return <ErrorDisplay message={err.message} />
       }
+    }
 
-      const propsCombinations = combinationsModifier(combinations(possibleValuesByPropName))
+    const propsCombinations = combinationsModifier(combinations(possibleValuesByPropName))
 
-      return (
-        <div>
-          {propsCombinations.map((props) =>
-            <CombinationRenderer
-              Component={component}
-              props={props}
-              options={options}
-              key={objectHash(props)}
-            />
-          )}
-        </div>
-      )
-    })
+    return (
+      <div>
+        {propsCombinations.map((props) =>
+          <CombinationRenderer
+            Component={component}
+            props={props}
+            options={options}
+            key={objectHash(props)}
+          />
+        )}
+      </div>
+    )
   }
 }
+
 
 export function setDefaults(newDefaults) {
   return Object.assign(defaultOptions, newDefaults)

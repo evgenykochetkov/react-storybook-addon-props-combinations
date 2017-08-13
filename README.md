@@ -18,11 +18,10 @@ npm i -D react-storybook-addon-props-combinations
 Then set the addon in your `.storybook/config.js`:
 
 ```js
-import { configure, setAddon } from '@kadira/storybook'
+import { configure } from '@storybook/react'
 
-import withPropsCombinations, { setDefaults } from 'react-storybook-addon-props-combinations'
+import { setDefaults } from 'react-storybook-addon-props-combinations'
 
-setAddon(withPropsCombinations)
 setDefaults({
   // overwrite global defaults here
 })
@@ -36,13 +35,15 @@ configure(() => {
 
 ```js
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+
+import withPropsCombinations from 'react-storybook-addon-props-combinations'
 
 import YourComponent from './somewhere'
 
 storiesOf('Basics', module)
-  .addWithPropsCombinations(
-    'Standard usage',
+  .add('Standard usage', withPropsCombinations(
     // provide your component
     YourComponent,
     // and an object with the shape

@@ -1,5 +1,8 @@
-import React, { PropTypes as pt } from 'react';
-import { storiesOf } from '@kadira/storybook';
+import React from 'react';
+import pt from 'prop-types';
+import { storiesOf } from '@storybook/react';
+
+import withPropsCombinations from '../src'
 
 class SomeComponent extends React.Component {
   static propTypes = {
@@ -20,8 +23,7 @@ class SomeComponent extends React.Component {
 }
 
 storiesOf('mustProvideAllProps example', module)
-  .addWithPropsCombinations(
-    'With all props provided',
+  .add('With all props provided', withPropsCombinations(
     SomeComponent,
     {
       foo: [1, 2],
@@ -31,9 +33,8 @@ storiesOf('mustProvideAllProps example', module)
     {
       mustProvideAllProps: true,
     }
-  )
-  .addWithPropsCombinations(
-    'When values for some props are not provided',
+  ))
+  .add('When values for some props are not provided', withPropsCombinations(
     SomeComponent,
     {
       // not providing possible values for foo and bar
@@ -42,9 +43,8 @@ storiesOf('mustProvideAllProps example', module)
     {
       mustProvideAllProps: true,
     }
-  )
-  .addWithPropsCombinations(
-    'Checking built-in components is not supported',
+  ))
+  .add('Checking built-in components is not supported', withPropsCombinations(
     'button',
     {
       disabled: [true, false],
@@ -52,4 +52,4 @@ storiesOf('mustProvideAllProps example', module)
     {
       mustProvideAllProps: true,
     }
-  )
+  ))

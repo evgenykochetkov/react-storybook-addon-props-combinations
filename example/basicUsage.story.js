@@ -1,18 +1,19 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+
+import withPropsCombinations from '../src'
 
 storiesOf('Basics', module)
-  .addWithPropsCombinations(
-    'Standard usage',
+  .add('Standard usage', withPropsCombinations(
     'button',
     {
       disabled: [false, true],
       onClick: [action('clicked')],
       children: ['hello world', <b>some elements</b>]
     }
-  )
-  .addWithPropsCombinations(
-    'Hide source',
+  ))
+  .add('Hide source', withPropsCombinations(
     'button',
     {
       disabled: [false, true],
@@ -22,4 +23,4 @@ storiesOf('Basics', module)
     {
       showSource: false,
     }
-  )
+  ))
