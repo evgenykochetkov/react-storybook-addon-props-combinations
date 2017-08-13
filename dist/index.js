@@ -25,6 +25,7 @@ Object.defineProperty(exports, 'withOneOfBool', {
     return _modifiers.withOneOfBool;
   }
 });
+exports.default = withPropsCombinations;
 exports.setDefaults = setDefaults;
 
 var _react = require('react');
@@ -74,45 +75,44 @@ var defaultOptions = {
   }
 };
 
-exports.default = {
-  addWithPropsCombinations: function addWithPropsCombinations(storyName, component, possibleValuesByPropName, userOptions) {
-    var options = (0, _extends3.default)({}, defaultOptions, userOptions);
+function withPropsCombinations(component, possibleValuesByPropName, userOptions) {
+  var options = (0, _extends3.default)({}, defaultOptions, userOptions);
 
-    if (!!options.renderCombination) {
-      throw new Error("renderCombination option is deprecated. \nPlease use CombinationRenderer instead. \nSee https://github.com/evgenykochetkov/react-storybook-addon-props-combinations#combinationrenderer");
+  if (!!options.renderCombination) {
+    throw new Error("renderCombination option is deprecated. \nPlease use CombinationRenderer instead. \nSee https://github.com/evgenykochetkov/react-storybook-addon-props-combinations#combinationrenderer");
+  }
+
+  var CombinationRenderer = options.CombinationRenderer,
+      combinationsModifier = options.combinationsModifier,
+      mustProvideAllProps = options.mustProvideAllProps;
+
+
+  return function () {
+    if (mustProvideAllProps) {
+      var err = checkForMissingProps(component, possibleValuesByPropName);
+
+      if (err) {
+        return _react2.default.createElement(_ErrorDisplay2.default, { message: err.message });
+      }
     }
 
-    var CombinationRenderer = options.CombinationRenderer,
-        combinationsModifier = options.combinationsModifier,
-        mustProvideAllProps = options.mustProvideAllProps;
+    var propsCombinations = combinationsModifier((0, _utils.combinations)(possibleValuesByPropName));
 
+    return _react2.default.createElement(
+      'div',
+      null,
+      propsCombinations.map(function (props) {
+        return _react2.default.createElement(CombinationRenderer, {
+          Component: component,
+          props: props,
+          options: options,
+          key: (0, _objectHash2.default)(props)
+        });
+      })
+    );
+  };
+}
 
-    this.add(storyName, function () {
-      if (mustProvideAllProps) {
-        var err = checkForMissingProps(component, possibleValuesByPropName);
-
-        if (err) {
-          return _react2.default.createElement(_ErrorDisplay2.default, { message: err.message });
-        }
-      }
-
-      var propsCombinations = combinationsModifier((0, _utils.combinations)(possibleValuesByPropName));
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        propsCombinations.map(function (props) {
-          return _react2.default.createElement(CombinationRenderer, {
-            Component: component,
-            props: props,
-            options: options,
-            key: (0, _objectHash2.default)(props)
-          });
-        })
-      );
-    });
-  }
-};
 function setDefaults(newDefaults) {
   return (0, _assign2.default)(defaultOptions, newDefaults);
 }

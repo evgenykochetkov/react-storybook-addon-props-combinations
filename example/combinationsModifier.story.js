@@ -1,7 +1,8 @@
-import React, { PropTypes as pt } from 'react';
-import { storiesOf } from '@kadira/storybook';
+import React from 'react';
+import pt from 'prop-types';
+import { storiesOf } from '@storybook/react';
 
-import { withOneOfBool } from '../src';
+import withPropsCombinations, { withOneOfBool } from '../src';
 
 // A primitive implementation for the sake of brevity.
 // You should probably use one from your favorite functional library instead
@@ -54,8 +55,7 @@ class FancyThing extends React.Component {
 }
 
 storiesOf('combinationsModifier example', module)
-  .addWithPropsCombinations(
-    'one modifier',
+  .add('one modifier', withPropsCombinations(
     FancyThing,
     {
       children: ['Look at me!'],
@@ -63,9 +63,8 @@ storiesOf('combinationsModifier example', module)
     {
       combinationsModifier: withOneOfBool(['red', 'green', 'blue']),
     }
-  )
-  .addWithPropsCombinations(
-    'modifiers composition',
+  ))
+  .add('modifiers composition', withPropsCombinations(
     FancyThing,
     {
       children: ['Look at me!'],
@@ -76,4 +75,4 @@ storiesOf('combinationsModifier example', module)
         withOneOfBool(['big', 'small'])
       ),
     }
-  )
+  ))

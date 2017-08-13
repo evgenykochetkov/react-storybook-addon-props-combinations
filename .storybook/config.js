@@ -1,8 +1,7 @@
-import { configure, setAddon } from '@kadira/storybook'
+import { configure } from '@storybook/react'
 
-import withPropsCombinations, { setDefaults } from '../src/'
+import { setDefaults } from '../src/'
 
-setAddon(withPropsCombinations)
 setDefaults({
   // overwrite global defaults here
 })
