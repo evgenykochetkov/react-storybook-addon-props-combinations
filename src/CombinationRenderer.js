@@ -1,6 +1,5 @@
 import React from 'react';
 import prettyFormat from 'pretty-format';
-import reactElementPlugin from 'pretty-format/build/plugins/ReactElement';
 
 const reactElement = Symbol.for('react.element');
 
@@ -33,7 +32,7 @@ export default ({Component, props, options}) => {
       {showSource && (
         <pre>
           {prettyFormat(transformPreactElement(el), {
-            plugins: [reactElementPlugin],
+            plugins: [prettyFormat.plugins.ReactElement],
           })}
         </pre>
       )}

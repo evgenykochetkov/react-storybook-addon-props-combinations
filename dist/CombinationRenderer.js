@@ -20,10 +20,6 @@ var _prettyFormat = require('pretty-format');
 
 var _prettyFormat2 = _interopRequireDefault(_prettyFormat);
 
-var _ReactElement = require('pretty-format/build/plugins/ReactElement');
-
-var _ReactElement2 = _interopRequireDefault(_ReactElement);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var reactElement = (0, _for2.default)('react.element');
@@ -61,7 +57,7 @@ exports.default = function (_ref) {
       'pre',
       null,
       (0, _prettyFormat2.default)(transformPreactElement(el), {
-        plugins: [_ReactElement2.default]
+        plugins: [_prettyFormat2.default.plugins.ReactElement]
       })
     )
   );
