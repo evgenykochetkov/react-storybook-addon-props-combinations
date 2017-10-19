@@ -69,10 +69,9 @@ Name | Type | Default | Description | Storybooks |
 
 ## Included Combination Modifiers
 
-1. **`withOneOfBool`**
+The following combination modifiers are included by default. If you'd like to expand this list, PRs are welcome!
 
-    Takes an array of property names and adds more combination with one of these props set to true.
-For example, if we had `[{ label: 'my button' }]`, `withOneOfBool(['small', 'big'])` will add `{ label: 'my button', small: true }` and `{ label: 'my button', big: true }`.
+Name | Description |
+---- | ----------- |
+`withOneOfBool` | Takes an array of property names and adds more combination with one of these props set to true. <br /> For example, if we had `[{ label: 'my button' }]`, `withOneOfBool(['small', 'big'])` will add `{ label: 'my button', small: true }` and `{ label: 'my button', big: true }`. <br /> See [this story](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/combinationsModifier.story.js) for a more detailed example.
 
-    See [this story](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/combinationsModifier.story.js) for a more detailed example.
-2. If you'd like to expand this list, PRs are welcome!
