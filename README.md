@@ -5,7 +5,7 @@
 
 Given possible values for each prop, renders your component with all combinations of prop values. Useful for finding edge cases or just seeing all component states at once.
 
-### [Live demo](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/)
+### [Live storybook demo](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/)
 
 ## Installation
 
@@ -58,44 +58,20 @@ storiesOf('Basics', module)
 
 ## Options
 
-Are provided as 4th argument to `addWithPropsCombinations` or set globally using `setDefaults`
+Options can be provided as 4th argument to `addWithPropsCombinations` or set globally using `setDefaults`.
 
-### `showSource`
-default: `true`
+Name | Type | Default | Description | Storybooks |
+---- | ---- | ------- | ----------- | ---------- |
+`CombinationRenderer` | `Component` | [default renderer](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/src/CombinationRenderer.js) | A component that renders a single props combination for your component. Receives `Component`, `props` and `options` as props. | [Source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/customCombinationRenderer.story.js), [Demo](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=Custom%20CombinationRenderer%20example&selectedStory=Rendering%20just%20a%20component%20without%20any%20wrappers&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
+`combinationsModifier` | `function` | `x => x` | A function that takes an array of generated prop combinations, does something with it (adds new combinations, removes or modifies some of existing ones, etc), and returns that modified array. See [included combination modifiers](#included-combination-modifiers) below. | [Source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/combinationsModifier.story.js), [Demo](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=combinationsModifier%20example&selectedStory=one%20modifier&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
+`mustProvideAllProps` | `boolean` | `false` | Ensures that possible values are provided for all props listed in propTypes. | [Source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/mustProvideAllProps.story.js), [Demo](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=mustProvideAllProps%20example&selectedStory=With%20all%20props%20provided&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
+`showSource` | `boolean` | `true` | Toggles rendering of sample source for each combination. | [Source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/basicUsage.story.js), [Demo](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=Basics&selectedStory=Standard%20usage&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
 
-Toggles rendering of sample source for each combination.
+## Included Combination Modifiers
 
-[Example source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/basicUsage.story.js) | [Result](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=Basics&selectedStory=Standard%20usage&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
+The following combination modifiers are included by default. If you'd like to expand this list, PRs are welcome!
 
-### `mustProvideAllProps`
-default: `false`
+Name | Description |
+---- | ----------- |
+`withOneOfBool` | Takes an array of property names and adds more combination with one of these props set to true. <br /> For example, if we had `[{ label: 'my button' }]`, `withOneOfBool(['small', 'big'])` will add `{ label: 'my button', small: true }` and `{ label: 'my button', big: true }`. <br /> See [this story](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/combinationsModifier.story.js) for a more detailed example.
 
-Ensures that possible values are provided for all props listed in propTypes.
-
-[Example source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/mustProvideAllProps.story.js) | [Result](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=mustProvideAllProps%20example&selectedStory=With%20all%20props%20provided&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
-
-### `CombinationRenderer`
-[default implementation](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/src/CombinationRenderer.js)
-
-A component that renders a single props combination for your component. Receives `Component`, `props` and `options` as props.
-
-[Example source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/customCombinationRenderer.story.js) | [Result](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=Custom%20CombinationRenderer%20example&selectedStory=Rendering%20just%20a%20component%20without%20any%20wrappers&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
-
-### `combinationsModifier`
-default: `x => x`(identity function)
-
-A function that takes an array of generated prop combinations, does something with it(adds new combinations, removes or modifies some of existing ones, etc), and returns that modified array.
-(See a list of included modifiers below)
-
-[Example source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/combinationsModifier.story.js) | [Result](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=combinationsModifier%20example&selectedStory=one%20modifier&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
-
-## Included combination modifiers
-
-(If you'd like to expand this list, PRs are welcome!)
-
-### `withOneOfBool`
-
-Takes an array of property names and adds more combination with one of these props set to true.
-For example, if we had `[{ label: 'my button' }]`, `withOneOfBool(['small', 'big'])` will add `{ label: 'my button', small: true }` and `{ label: 'my button', big: true }`.
-
-See [this story](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/combinationsModifier.story.js) for a more detailed example.
