@@ -1,5 +1,7 @@
 [![npm version](https://badge.fury.io/js/react-storybook-addon-props-combinations.svg)](https://www.npmjs.com/package/react-storybook-addon-props-combinations) 
+[![npm](https://img.shields.io/npm/dm/react-storybook-addon-props-combinations.svg)](https://www.npmjs.com/package/react-storybook-addon-props-combinations) 
 [![Build Status](https://travis-ci.org/evgenykochetkov/react-storybook-addon-props-combinations.svg?branch=master)](https://travis-ci.org/evgenykochetkov/react-storybook-addon-props-combinations)
+
 
 # Props Combinations addon for [React Storybook](https://github.com/storybooks/react-storybook) 
 
