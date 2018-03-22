@@ -99,7 +99,7 @@ function withPropsCombinations(component, possibleValuesByPropName, userOptions)
     var propsCombinations = combinationsModifier((0, _utils.combinations)(possibleValuesByPropName));
 
     return _react2.default.createElement(
-      'div',
+      _react.Fragment,
       null,
       propsCombinations.map(function (props) {
         return _react2.default.createElement(CombinationRenderer, {
