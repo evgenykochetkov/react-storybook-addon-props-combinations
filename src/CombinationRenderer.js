@@ -30,7 +30,7 @@ export default ({Component, props, options}) => {
     <div>
       {el}
       {showSource && (
-        <pre>
+        <pre className="source">
           {prettyFormat(transformPreactElement(el), {
             plugins: [prettyFormat.plugins.ReactElement],
           })}
