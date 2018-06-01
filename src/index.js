@@ -28,6 +28,7 @@ const defaultOptions = {
   CombinationRenderer: DefaultCombinationRenderer,
   showSource: true,
   mustProvideAllProps: false,
+  style: {},
   combinationsModifier: x => x,
 }
 
