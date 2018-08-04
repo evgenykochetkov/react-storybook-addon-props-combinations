@@ -55,7 +55,7 @@ storiesOf('Basics', module)
       onClick: [action('clicked')],
       children: ['hello world', <b>some elements</b>]
     }
-  )
+  ))
 ```
 
 ## Options
