@@ -1,9 +1,9 @@
-[![npm version](https://badge.fury.io/js/react-storybook-addon-props-combinations.svg)](https://www.npmjs.com/package/react-storybook-addon-props-combinations) 
-[![npm](https://img.shields.io/npm/dm/react-storybook-addon-props-combinations.svg)](https://www.npmjs.com/package/react-storybook-addon-props-combinations) 
+[![npm version](https://badge.fury.io/js/react-storybook-addon-props-combinations.svg)](https://www.npmjs.com/package/react-storybook-addon-props-combinations)
+[![npm](https://img.shields.io/npm/dm/react-storybook-addon-props-combinations.svg)](https://www.npmjs.com/package/react-storybook-addon-props-combinations)
 [![Build Status](https://travis-ci.org/evgenykochetkov/react-storybook-addon-props-combinations.svg?branch=master)](https://travis-ci.org/evgenykochetkov/react-storybook-addon-props-combinations)
 
 
-# Props Combinations addon for [React Storybook](https://github.com/storybooks/react-storybook) 
+# Props Combinations addon for [React Storybook](https://github.com/storybooks/react-storybook)
 
 Given possible values for each prop, renders your component with all combinations of prop values. Useful for finding edge cases or just seeing all component states at once.
 
@@ -68,7 +68,7 @@ Name | Type | Default | Description | Storybooks |
 `combinationsModifier` | `function` | `x => x` | A function that takes an array of generated prop combinations, does something with it (adds new combinations, removes or modifies some of existing ones, etc), and returns that modified array. See [included combination modifiers](#included-combination-modifiers) below. | [Source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/combinationsModifier.story.js), [Demo](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=combinationsModifier%20example&selectedStory=one%20modifier&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
 `mustProvideAllProps` | `boolean` | `false` | Ensures that possible values are provided for all props listed in propTypes. | [Source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/mustProvideAllProps.story.js), [Demo](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=mustProvideAllProps%20example&selectedStory=With%20all%20props%20provided&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
 `showSource` | `boolean` | `true` | Toggles rendering of sample source for each combination. | [Source](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/basicUsage.story.js), [Demo](https://evgenykochetkov.github.io/react-storybook-addon-props-combinations/?selectedKind=Basics&selectedStory=Standard%20usage&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
-
+`style` | `object` | `{}` | Optional styling for wrapping div of each rendered combination |
 ## Included Combination Modifiers
 
 The following combination modifiers are included by default. If you'd like to expand this list, PRs are welcome!

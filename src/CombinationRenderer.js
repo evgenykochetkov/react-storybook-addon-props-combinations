@@ -23,11 +23,12 @@ export default ({Component, props, options}) => {
   const el = React.createElement(Component, props)
 
   const {
-    showSource
+    showSource,
+    style
   } = options
 
   return (
-    <div>
+    <div style={style}>
       {el}
       {showSource && (
         <pre className="source">

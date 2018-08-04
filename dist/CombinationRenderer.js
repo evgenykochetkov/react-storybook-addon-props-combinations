@@ -46,12 +46,13 @@ exports.default = function (_ref) {
 
   var el = _react2.default.createElement(Component, props);
 
-  var showSource = options.showSource;
+  var showSource = options.showSource,
+      style = options.style;
 
 
   return _react2.default.createElement(
     'div',
-    null,
+    { style: style },
     el,
     showSource && _react2.default.createElement(
       'pre',
