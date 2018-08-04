@@ -70,6 +70,7 @@ var defaultOptions = {
   CombinationRenderer: _CombinationRenderer2.default,
   showSource: true,
   mustProvideAllProps: false,
+  style: {},
   combinationsModifier: function combinationsModifier(x) {
     return x;
   }

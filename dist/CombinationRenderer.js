@@ -56,7 +56,7 @@ exports.default = function (_ref) {
     el,
     showSource && _react2.default.createElement(
       'pre',
-      null,
+      { className: 'source' },
       (0, _prettyFormat2.default)(transformPreactElement(el), {
         plugins: [_prettyFormat2.default.plugins.ReactElement]
       })
