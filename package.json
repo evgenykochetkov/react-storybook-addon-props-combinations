@@ -58,7 +58,7 @@
     "pretty-format": "^21.2.1"
   },
   "peerDependencies": {
-    "react": "^15.x || ^16.x"
+    "react": "^16.x"
   },
   "engines": {
     "npm": ">=3.0.0"
