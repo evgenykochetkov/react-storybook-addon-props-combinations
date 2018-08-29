@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import objectHash from 'object-hash'
 
@@ -60,7 +60,7 @@ export default function withPropsCombinations (component, possibleValuesByPropNa
     const propsCombinations = combinationsModifier(combinations(possibleValuesByPropName))
 
     return (
-      <div>
+      <Fragment>
         {propsCombinations.map((props) =>
           <CombinationRenderer
             Component={component}
@@ -69,7 +69,7 @@ export default function withPropsCombinations (component, possibleValuesByPropNa
             key={objectHash(props)}
           />
         )}
-      </div>
+      </Fragment>
     )
   }
 }
