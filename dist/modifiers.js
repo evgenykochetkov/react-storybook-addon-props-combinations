@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.withOneOfBool = undefined;
+exports.withOneOf = exports.withOneOfBool = undefined;
 
 var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
 
@@ -22,6 +22,16 @@ var withOneOfBool = exports.withOneOfBool = function withOneOfBool(boolPropNames
     return combinations.concat((0, _utils.flatMap)(combinations, function (c) {
       return boolPropNames.map(function (boolPropName) {
         return (0, _extends4.default)({}, c, (0, _defineProperty3.default)({}, boolPropName, true));
+      });
+    }));
+  };
+};
+
+var withOneOf = exports.withOneOf = function withOneOf(boolPropNames) {
+  return function (combinations) {
+    return combinations.concat((0, _utils.flatMap)(combinations, function (c) {
+      return boolPropNames.map(function (boolPropName) {
+        return (0, _extends4.default)({}, c, p);
       });
     }));
   };

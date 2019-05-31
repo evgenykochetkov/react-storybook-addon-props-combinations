@@ -9,3 +9,13 @@ export const withOneOfBool = boolPropNames => combinations =>
       )
     )
   )
+
+export const withOneOf = propObjects => combinations =>
+  combinations.concat(
+    flatMap(
+      combinations,
+      c => propObjects.map(
+        props => ({ ...c, ...props })
+      )
+    )
+  )

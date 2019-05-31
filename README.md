@@ -76,4 +76,5 @@ The following combination modifiers are included by default. If you'd like to ex
 Name | Description |
 ---- | ----------- |
 `withOneOfBool` | Takes an array of property names and adds more combination with one of these props set to true. <br /> For example, if we had `[{ label: 'my button' }]`, `withOneOfBool(['small', 'big'])` will add `{ label: 'my button', small: true }` and `{ label: 'my button', big: true }`. <br /> See [this story](https://github.com/evgenykochetkov/react-storybook-addon-props-combinations/blob/master/example/combinationsModifier.story.js) for a more detailed example.
+`withOneOf` | Takes an array of property objest and adds more combination with each of thesee objects merged, if we had `[{ label: 'my button' }]`, `withOneOf([{ type: 'primary' }, { big: true, icon: 'plus' }])` will add `{ label: 'my button', type: 'primary' }` and `{ label: 'my button', big: true, icon: 'plus' }`.
 
